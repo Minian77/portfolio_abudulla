@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+  --color-good: var(--good);
+}
+
+:root {
+  --bg: oklch(0.982 0.003 255);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.968 0.004 255);
+  --line: oklch(0.918 0.005 255);
+  --line-strong: oklch(0.86 0.007 255);
+  --fg: oklch(0.21 0.016 262);
+  --fg-2: oklch(0.4 0.014 262);
+  --muted: oklch(0.54 0.012 262);
+  --accent: oklch(0.53 0.17 258);
+  --accent-soft: oklch(0.53 0.17 258 / 0.09);
+  --accent-fg: oklch(0.99 0 0);
+  --good: oklch(0.6 0.15 155);
+  --shadow: 0 1px 2px oklch(0.2 0.02 262 / 0.04), 0 1px 1px oklch(0.2 0.02 262 / 0.03);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: oklch(0.152 0.006 262);
+  --surface: oklch(0.188 0.007 262);
+  --surface-2: oklch(0.222 0.008 262);
+  --line: oklch(1 0 0 / 0.075);
+  --line-strong: oklch(1 0 0 / 0.14);
+  --fg: oklch(0.965 0.003 262);
+  --fg-2: oklch(0.8 0.008 262);
+  --muted: oklch(0.64 0.01 262);
+  --accent: oklch(0.74 0.13 252);
+  --accent-soft: oklch(0.74 0.13 252 / 0.12);
+  --accent-fg: oklch(0.17 0.02 262);
+  --good: oklch(0.76 0.15 155);
+  --shadow: 0 1px 0 oklch(1 0 0 / 0.03) inset;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    scroll-padding-top: 5rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-feature-settings: "ss01", "cv11";
+  }
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--fg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@utility panel {
+  border-radius: 0.875rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@utility stripes {
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--line-strong) 0 2px,
+    transparent 2px 6px
+  );
+}
+
+@keyframes ping-soft {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
