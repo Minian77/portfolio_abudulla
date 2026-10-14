@@ -7,9 +7,6 @@ import { Stack } from "@/components/sections/stack";
 import { Sidebar, Topbar } from "@/components/shell";
 import { PROFILE } from "@/data/resume";
 
-// Re-render daily so "Present" durations stay current.
-export const revalidate = 86400;
-
 export default function Home() {
   return (
     <div className="lg:grid lg:grid-cols-[272px_minmax(0,1fr)]">
